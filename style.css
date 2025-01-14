@@ -31,7 +31,7 @@ nav, .nav-links {
 nav {
     justify-content: space-around;
     align-items: center;
-    height: 17vh;
+    height: 12vh;
 }
 
 .nav-links {
@@ -159,6 +159,7 @@ section {
 #profile {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 5rem;
     height: 80vh;
 }
@@ -168,6 +169,7 @@ section {
     height: 400px;
     width: 400px;
     margin: auto 0;
+    
 }
 
 .profile-img {
