@@ -220,7 +220,6 @@ section {
 }
 .btn {
     font-weight: 600;
-    /* transition: all 0.3s ease; */
     padding: 1rem;
     width: 8rem;
     border-radius: 2rem;
@@ -233,6 +232,7 @@ section {
 
 .btn-color-1:hover, .btn-color-2:hover {
     cursor: pointer;
+    transform: scale(1.1);  
 }
 
 .btn-color-1, .btn-color-2:hover {
@@ -295,6 +295,10 @@ section {
     height: 400px;
     width: 400px;
     margin: auto 0;
+}
+
+.text-container {
+    text-align: justify;
 }
 
 /* EXPERIENCE */
