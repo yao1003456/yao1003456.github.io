@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Portfolio</title>
-    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="mediaqueries.css" />
   </head>
@@ -114,11 +114,11 @@
           </div>
           <div class="text-container">
             <p>
-              I am a fullstack developer with a passion for technology. I have experience in HTML, CSS,
-              JavaScript, Python, Java, and C++ andcurrently pursuing a
-              degree in Computing Science at the University of Glasgow. I am
-              looking for opportunities to further develop my skills and
-              knowledge in the field of software development.
+              I am a fullstack developer with a passion for technology. I have
+              experience in HTML, CSS, JavaScript, Python, Java, and C++ and
+              currently pursuing a degree in Computing Science at the University
+              of Glasgow. I am looking for opportunities to further develop my
+              skills and knowledge in the field of software development.
             </p>
           </div>
         </div>
@@ -257,7 +257,8 @@
                 class="project-img"
               />
             </div>
-            <h2 class="experience-sub-title project-title">Project 1</h2>
+            <p class="section__text__p1 project-p">Project 1</p>
+            <h2 class="experience-sub-title project-title">Plane Panic</h2>
             <div class="btn-container">
               <button
                 class="btn btn-color-2 project-btn"
@@ -271,6 +272,49 @@
               >
                 Live Demo
               </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="openModal('modal1')"
+              >
+                More Details
+              </button>
+            </div>
+            <div id="modal1" class="modal">
+              <div class="modal-content">
+                <span class="close" onclick="closeModal('modal1')"
+                  >&times;</span
+                >
+                <h2>Project 1 Details</h2>
+                <div id="carousel1" class="carousel">
+                  <div class="carousel-images">
+                    <img
+                      src="./assets/project-1-img1.png"
+                      alt="Project 1 Image 1"
+                    />
+                    <img
+                      src="./assets/project-1-img2.png"
+                      alt="Project 1 Image 2"
+                    />
+                    <img
+                      src="./assets/project-1-img3.png"
+                      alt="Project 1 Image 3"
+                    />
+                  </div>
+                  <button
+                    class="carousel-prev"
+                    onclick="prevSlide('carousel1')"
+                  >
+                    &#10094;
+                  </button>
+                  <button
+                    class="carousel-next"
+                    onclick="nextSlide('carousel1')"
+                  >
+                    &#10095;
+                  </button>
+                </div>
+                <p>More pictures and details about Project 1.</p>
+              </div>
             </div>
           </div>
           <div class="details-container color-container">
@@ -281,7 +325,8 @@
                 class="project-img"
               />
             </div>
-            <h2 class="experience-sub-title project-title">Project 2</h2>
+            <p class="section__text__p1 project-p">Project 2</p>
+            <h2 class="experience-sub-title project-title">insQuire</h2>
             <div class="btn-container">
               <button
                 class="btn btn-color-2 project-btn"
@@ -295,9 +340,194 @@
               >
                 Live Demo
               </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="openModal('modal2')"
+              >
+                More Details
+              </button>
+            </div>
+            <div id="modal2" class="modal">
+              <div class="modal-content">
+                <span class="close" onclick="closeModal('modal2')"
+                  >&times;</span
+                >
+                <h2>Project 2 Details</h2>
+                <div id="carousel2" class="carousel">
+                  <div class="carousel-images">
+                    <img
+                      src="./assets/project-2-img1.jpg"
+                      alt="Project 2 Image 1"
+                    />
+                    <img
+                      src="./assets/project-2-img2.jpg"
+                      alt="Project 2 Image 2"
+                    />
+                    <img
+                      src="./assets/project-2-img3.jpg"
+                      alt="Project 2 Image 3"
+                    />
+                  </div>
+                  <button
+                    class="carousel-prev"
+                    onclick="prevSlide('carousel2')"
+                  >
+                    &#10094;
+                  </button>
+                  <button
+                    class="carousel-next"
+                    onclick="nextSlide('carousel2')"
+                  >
+                    &#10095;
+                  </button>
+                </div>
+                <p>More pictures and details about Project 1.</p>
+              </div>
             </div>
           </div>
-
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/project-3.png"
+                alt="Project 3"
+                class="project-img"
+              />
+            </div>
+            <p class="section__text__p1 project-p">Project 3</p>
+            <h2 class="experience-sub-title project-title">Off Axis Ticketing</h2>            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/yao1003456'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://sh20.pythonanywhere.com/'"
+              >
+                Live Demo
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="openModal('modal3')"
+              >
+                More Details
+              </button>
+            </div>
+            <div id="modal3" class="modal">
+              <div class="modal-content">
+                <span class="close" onclick="closeModal('modal3')"
+                  >&times;</span
+                >
+                <h2>Project 3 Details</h2>
+                <div id="carousel3" class="carousel">
+                  <div class="carousel-images">
+                    <img
+                      src="./assets/project-3-img1.png"
+                      alt="Project 3 Image 1"
+                    />
+                    <img
+                      src="./assets/project-3-img2.png"
+                      alt="Project 3 Image 2"
+                    />
+                    <img
+                      src="./assets/project-3-img3.png"
+                      alt="Project 3 Image 3"
+                    />
+                    <img
+                      src="./assets/project-3-img4.png"
+                      alt="Project 3 Image "
+                    />
+                  </div>
+                  <button
+                    class="carousel-prev"
+                    onclick="prevSlide('carousel3')"
+                  >
+                    &#10094;
+                  </button>
+                  <button
+                    class="carousel-next"
+                    onclick="nextSlide('carousel3')"
+                  >
+                    &#10095;
+                  </button>
+                </div>
+                <p>More pictures and details about Project 1.</p>
+              </div>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/project-4.png"
+                alt="Project 4"
+                class="project-img"
+              />
+            </div>
+            
+            <p class="section__text__p1 project-p">Project 4</p>
+            <h2 class="experience-sub-title project-title">Personal Profile</h2>            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/yao1003456'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/yao1003456'"
+              >
+                Live Demo
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="openModal('modal4')"
+              >
+                More Details
+              </button>
+            </div>
+            <div id="modal4" class="modal">
+              <div class="modal-content">
+                <span class="close" onclick="closeModal('modal4')"
+                  >&times;</span
+                >
+                <h2>Project 4 Details</h2>
+                <div id="carousel4" class="carousel">
+                  <div class="carousel-images">
+                    <img
+                      src="./assets/project-4-img1.png"
+                      alt="Project 4 Image 1"
+                    />
+                    <img
+                      src="./assets/project-4-img2.png"
+                      alt="Project 4 Image 2"
+                    />
+                    <img
+                      src="./assets/project-4-img3.png"
+                      alt="Project 4 Image 3"
+                    />
+                    <img
+                    src="./assets/project-4-img4.png"
+                    alt="Project 4 Image 3"
+                  />
+                  </div>
+                  <button
+                    class="carousel-prev"
+                    onclick="prevSlide('carousel4')"
+                  >
+                    &#10094;
+                  </button>
+                  <button
+                    class="carousel-next"
+                    onclick="nextSlide('carousel4')"
+                  >
+                    &#10095;
+                  </button>
+                </div>
+                <p>More pictures and details about Project 4.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <img
@@ -318,7 +548,9 @@
             alt="email icon"
             class="icon contact-icon slightly-bigger"
           />
-          <p><a href="mailto:zhenyaoheng@gmail.com">zhenyaoheng@gmail.com</a></p>
+          <p>
+            <a href="mailto:zhenyaoheng@gmail.com">zhenyaoheng@gmail.com</a>
+          </p>
         </div>
         <div class="contact-info-container">
           <img
@@ -326,7 +558,9 @@
             alt="Linkedin icon"
             class="icon contact-icon"
           />
-          <p><a href="https://www.linkedin.com/in/zhen-yao-heng">LinkedIn</a></p>
+          <p>
+            <a href="https://www.linkedin.com/in/zhen-yao-heng">LinkedIn</a>
+          </p>
         </div>
       </div>
     </section>
