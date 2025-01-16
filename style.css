@@ -351,6 +351,10 @@ article .icon {
     background: rgb(250, 250, 250);
 }
 
+.project-text-container {
+    min-width: 180px;
+}
+
 .project-img {
     border-radius: 2rem;
     width: 90%;

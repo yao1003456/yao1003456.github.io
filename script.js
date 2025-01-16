@@ -5,17 +5,31 @@ function toggleMenu() {
     icon.classList.toggle("open")
 }
 
+let slideIntervals = {};
+
+function startAutoSlide(carouselId) {
+  slideIntervals[carouselId] = setInterval(() => {
+    nextSlide(carouselId);
+  }, 3000); // Change slide every 3 seconds
+}
+
+function stopAutoSlide(carouselId) {
+  clearInterval(slideIntervals[carouselId]);
+}
+
 function openModal(modalId) {
   const modal = document.getElementById(modalId);
   modal.style.display = "block";
   modal.classList.remove('fade-out');
   modal.querySelector('.modal-content').classList.remove('slide-out');
+  startAutoSlide(modal.querySelector('.carousel').id);
 }
 
 function closeModal(modalId) {
   const modal = document.getElementById(modalId);
   modal.classList.add('fade-out');
   modal.querySelector('.modal-content').classList.add('slide-out');
+  stopAutoSlide(modal.querySelector('.carousel').id);
   setTimeout(() => {
     modal.style.display = "none";
   }, 500); // Match the duration of the fadeOut animation
