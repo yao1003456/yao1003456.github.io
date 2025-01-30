@@ -111,4 +111,8 @@
     .text-container {
         text-align: justify;
     }
+
+    .article-container{
+        gap: 1rem;
+    }
 }
