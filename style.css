@@ -443,12 +443,51 @@ footer p {
 }
 
 .modal-content {
-  background-color: #fefefe;
+  background-color: #ffffff; 
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 70%;
   animation: slideIn 0.5s;
+  border-radius: 1rem; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  color: #333;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content p {
+  border: 1px solid #888;
+  padding: 1rem;
+  margin: 0 1rem;
+  align-self: center;
+  text-align: justify;
+  border-radius: 1rem;
+  max-width: 80%;
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.header-container .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.header-container h2 {
+  margin: 0 auto;
 }
 
 .close {
@@ -456,11 +495,15 @@ footer p {
   float: right;
   font-size: 28px;
   font-weight: bold;
+  background: none; 
+  border: none; 
+  cursor: pointer; 
+  transition: color 0.3s ease; 
 }
 
 .close:hover,
 .close:focus {
-  color: black;
+  color: #000;
   text-decoration: none;
   cursor: pointer;
 }
