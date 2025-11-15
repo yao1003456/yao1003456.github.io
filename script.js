@@ -1,72 +1,139 @@
 function toggleMenu() {
-    const menu = document.querySelector(".menu-links");
-    const icon = document.querySelector(".hamburger-icon");
-    menu.classList.toggle("open")
-    icon.classList.toggle("open")
+  const menu = document.querySelector(".menu-links");
+  const icon = document.querySelector(".hamburger-icon");
+  menu.classList.toggle("open");
+  icon.classList.toggle("open");
 }
 
-let slideIntervals = {};
+let currentOpenModal = null;
+const MODAL_VISIBLE_CLASS = "modal--visible";
+const MODAL_PARENT_ACTIVE_CLASS = "color-container--modal-open";
 
-function startAutoSlide(carouselId) {
-  slideIntervals[carouselId] = setInterval(() => {
-    nextSlide(carouselId);
-  }, 3000); // Change slide every 3 seconds
+function setModalParentState(modal, isActive) {
+  const parentCard = modal?.closest(".color-container");
+  if (parentCard) {
+    parentCard.classList.toggle(MODAL_PARENT_ACTIVE_CLASS, Boolean(isActive));
+  }
 }
 
-function stopAutoSlide(carouselId) {
-  clearInterval(slideIntervals[carouselId]);
+function isAnyModalVisible() {
+  return Boolean(document.querySelector(`.modal.${MODAL_VISIBLE_CLASS}`));
 }
 
 function openModal(modalId) {
   const modal = document.getElementById(modalId);
-  modal.style.display = "block";
-  modal.classList.remove('fade-out');
-  modal.querySelector('.modal-content').classList.remove('slide-out');
-  startAutoSlide(modal.querySelector('.carousel').id);
+  if (!modal) return;
+
+  if (currentOpenModal && currentOpenModal !== modal) {
+    closeModal(currentOpenModal);
+  }
+
+  modal.classList.add(MODAL_VISIBLE_CLASS);
+  setModalParentState(modal, true);
+  currentOpenModal = modal;
+  lockBodyScroll();
+  resetCarousel(modal);
 }
 
-function closeModal(modalId) {
-  const modal = document.getElementById(modalId);
-  modal.classList.add('fade-out');
-  modal.querySelector('.modal-content').classList.add('slide-out');
-  stopAutoSlide(modal.querySelector('.carousel').id);
+function closeModal(modalOrId) {
+  const modal =
+    typeof modalOrId === "string"
+      ? document.getElementById(modalOrId)
+      : modalOrId;
+  if (!modal) return;
+
+  setModalParentState(modal, false);
+  modal.classList.remove(MODAL_VISIBLE_CLASS);
+
+  if (currentOpenModal === modal) {
+    currentOpenModal = null;
+  }
+
   setTimeout(() => {
-    modal.style.display = "none";
-  }, 500); // Match the duration of the fadeOut animation
+    if (!isAnyModalVisible()) {
+      unlockBodyScroll();
+    }
+  }, 300);
 }
 
-// Close the modal when the user clicks anywhere outside of it
-window.onclick = function(event) {
-  const modals = document.querySelectorAll('.modal');
-  modals.forEach(modal => {
-    if (event.target == modal) {
-      closeModal(modal.id);
+function lockBodyScroll() {
+  document.body.classList.add("modal-open");
+}
+
+function unlockBodyScroll() {
+  document.body.classList.remove("modal-open");
+}
+
+function resetCarousel(modal) {
+  const carousels = modal.querySelectorAll(".carousel");
+  carousels.forEach((carousel) => {
+    carousel.dataset.currentIndex = "0";
+    const images = carousel.querySelector(".carousel-images");
+    if (images) {
+      images.style.transform = "translateX(0%)";
     }
   });
 }
 
-function nextSlide(carouselId) {
-  const carousel = document.querySelector(`#${carouselId} .carousel-images`);
-  const slides = carousel.children;
-  const slideWidth = slides[0].clientWidth;
-  carousel.style.transition = 'transform 0.5s ease-in-out';
-  carousel.style.transform = `translateX(-${slideWidth}px)`;
-  setTimeout(() => {
-    carousel.appendChild(slides[0]);
-    carousel.style.transition = 'none';
-    carousel.style.transform = 'translateX(0)';
-  }, 500); // Match the duration of the transform transition
+function changeSlide(carouselId, direction) {
+  const carousel = document.getElementById(carouselId);
+  if (!carousel) return;
+
+  const images = carousel.querySelector(".carousel-images");
+  if (!images) return;
+
+  const imageCount = images.children.length;
+  if (!imageCount) return;
+
+  let currentIndex = parseInt(carousel.dataset.currentIndex || "0", 10);
+  currentIndex = (currentIndex + direction + imageCount) % imageCount;
+
+  carousel.dataset.currentIndex = currentIndex.toString();
+  images.style.transform = `translateX(${-currentIndex * 100}%)`;
 }
 
-function prevSlide(carouselId) {
-  const carousel = document.querySelector(`#${carouselId} .carousel-images`);
-  const slides = carousel.children;
-  const slideWidth = slides[0].clientWidth;
-  carousel.style.transition = 'none';
-  carousel.style.transform = `translateX(-${slideWidth}px)`;
-  carousel.insertBefore(slides[slides.length - 1], slides[0]);
-  setTimeout(() => {
-    carousel.style.transition = 'transform 0.5s ease-in-out';
-    carousel.style.transform = 'translateX(0)';
-  }, 50);
+function prevSlide(carouselId, event) {
+  if (event) event.stopPropagation();
+  changeSlide(carouselId, -1);
 }
+
+function nextSlide(carouselId, event) {
+  if (event) event.stopPropagation();
+  changeSlide(carouselId, 1);
+}
+
+function initializeModals() {
+  const modals = document.querySelectorAll(".modal");
+  modals.forEach((modal) => {
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeModal(modal);
+      }
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && currentOpenModal) {
+      closeModal(currentOpenModal);
+    }
+  });
+
+  const carouselButtons = document.querySelectorAll(
+    "[data-carousel-target][data-carousel-direction]"
+  );
+
+  carouselButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+
+      const { carouselTarget, carouselDirection } = button.dataset;
+      const direction = Number(carouselDirection);
+
+      if (!carouselTarget || Number.isNaN(direction)) return;
+
+      changeSlide(carouselTarget, direction);
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", initializeModals);
